@@ -500,10 +500,7 @@ components:
                     format: date-time
                     description: ISO 8601 formatted date and time (e.g., "2025-06-22T18:30:00Z")
                     example: "2025-06-22T18:30:00Z"
-                  rrn:
-                    type: string
-                    description: Retrival Refrence Number (takes up to 12 digits and numeric only)
-                    example: "123456789012"
+
                 required:
                   - transname
                   - transDateTime
