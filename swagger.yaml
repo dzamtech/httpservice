@@ -37,7 +37,7 @@ paths:
       description: Supported Transaction Types are as follows Sale=> "01", refund=> "03" Void=> "08" Refund Void=> "39". DeviceId to use Physical ID such as Static Mac Address on device. To always send Sequence number or unique transaction identifier from third party system. Supported request body format will be json.
       operationId: /payment
       parameters:
-      - name: deviceId
+      - name: DeviceId
         in: header
         required: true
         schema:
@@ -87,7 +87,7 @@ paths:
     post:
       tags:
         - advice
-      summary: Authorise a transaction with bank host system.
+      summary: For use with notifying bank host system on any changes done.
       description: Supported Transaction Types are as follows Reversal=> "04", settlement Report=> "10". DeviceId to use Physical ID such as Static Mac Address on device. To always send Sequence number or unique transaction identifier from third party system. Supported request body format will be json.
       operationId: /advice
       parameters:
@@ -500,12 +500,14 @@ components:
                     format: date-time
                     description: ISO 8601 formatted date and time (e.g., "2025-06-22T18:30:00Z")
                     example: "2025-06-22T18:30:00Z"
-
+                  rrn:
+                    type: string
+                    description: Retrival Refrence Number (takes up to 12 digits and numeric only)
+                    example: "123456789012"  
                 required:
                   - transname
                   - transDateTime
-                  - totalAmount 
-                  - rrn
+                  - totalAmount  
           totals:
               type: array
               nullable: true
@@ -598,9 +600,10 @@ components:
       type: object
       properties:
         code:
-          type: string
+          type: integer
         message:
           type: string
+          example: 200
         timestamp:
           type: string
           format: date-time
